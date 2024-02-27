@@ -31,7 +31,7 @@ func longestPalindrome(s string) string {
 		return string(s[0])
 	}
 
-	longest := ""
+	longest := string(s[0])
 	repeatMap := make(map[byte][]int)
 
 	for i := 0; i < len(s); i++ {
@@ -59,9 +59,6 @@ func longestPalindrome(s string) string {
 		}
 	}
 
-	if longest == "" {
-		return string(s[0])
-	}
 	return longest
 }
 
