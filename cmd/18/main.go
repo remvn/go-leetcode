@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"slices"
 	"sort"
 )
 
@@ -30,7 +29,7 @@ type testCase struct {
 // then this problem is very simple
 
 func fourSum(nums []int, target int) [][]int {
-	slices.Sort(nums)
+	sort.Ints(nums)
 	// fmt.Println(nums)
 
 	result := [][]int{}
