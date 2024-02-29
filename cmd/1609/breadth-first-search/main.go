@@ -20,8 +20,11 @@ func isEvenOddTree(root *TreeNode) bool {
 		size := len(q)
 		prev := -1
 		for i := 0; i < size; i++ {
+			// dequeue
 			node := q[0]
 			q = q[1:]
+
+			// append all nodes for the next level
 			if node.Left != nil {
 				q = append(q, node.Left)
 			}
