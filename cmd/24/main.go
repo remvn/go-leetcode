@@ -48,30 +48,23 @@ func swapPairs(head *ListNode) *ListNode {
 		return head
 	}
 
-	curr := head
-	prev := head
+	var prev, curr, newHead *ListNode = nil, head, head.Next
 	index := 0
-	for curr != nil {
-		fmt.Println(curr.Val)
-		if index%2 == 0 && curr.Next != nil {
-			// swap
-			swap := curr.Next
-			next := swap.Next
+	for curr != nil && curr.Next != nil {
+		if index%2 == 0 {
+			firstNode, secondNode := curr, curr.Next
 
-			swap.Next = curr
-			curr.Next = next
+			firstNode.Next = secondNode.Next
+			secondNode.Next = firstNode
 
-			curr = swap
-
-			if index == 0 {
-				head = swap
-			} else {
-				prev.Next = swap
+			if prev != nil {
+				prev.Next = secondNode
 			}
+			curr = secondNode
 		}
 		index++
 		prev = curr
 		curr = curr.Next
 	}
-	return head
+	return newHead
 }
