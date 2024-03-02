@@ -37,7 +37,7 @@ func combinationSum(candidates []int, target int) [][]int {
 }
 
 func combination(arr []int, candidates []int, target int, result *[][]int) {
-	fmt.Println(arr)
+	// fmt.Println(arr)
 	total := sumOfArr(arr)
 	if total == target {
 		// fmt.Println("append: ", arr)
@@ -49,7 +49,9 @@ func combination(arr []int, candidates []int, target int, result *[][]int) {
 	}
 
 	if len(arr) > 0 {
-		// repeat last character
+		// repeat last digit until a + a + a + ... + 1 > total
+		// then the loop below will append new digit (eg: a + a + a + b)
+		// and start this loop again
 		combination(cloneAndAppend(arr, arr[len(arr)-1]), candidates, target, result)
 	}
 

@@ -8,7 +8,7 @@ import (
 func main() {
 	tests := []TestCase{
 		{arr: []int{10, 1, 2, 7, 6, 1, 5}, target: 8},
-		{arr: []int{2, 5, 2, 1, 2}, target: 5},
+		{arr: []int{2, 5, 2, 1, 2}, target: 7},
 	}
 	for _, test := range tests {
 		fmt.Printf("test: %+v \n", test)
@@ -24,27 +24,16 @@ type TestCase struct {
 
 func combinationSum2(candidates []int, target int) [][]int {
 	sort.Ints(candidates)
-	result := combination(candidates, target)
-	return result
-}
+	// fmt.Println("candidates: ", candidates)
 
-func combination(candidates []int, target int) [][]int {
-	fmt.Println("candidates: ", candidates)
 	result := [][]int{}
-	for i := 0; i < len(candidates); i++ {
-		fmt.Println("i:", i)
-		recursiveAppend([]int{candidates[i]}, candidates[i+1:], target, &result)
-
-		for i+1 < len(candidates) && candidates[i+1] == candidates[i] {
-			i++
-		}
-	}
+	backtrack([]int{}, candidates, target, &result)
 
 	return result
 }
 
-func recursiveAppend(arr []int, candidates []int, target int, result *[][]int) {
-	fmt.Println(arr)
+func backtrack(arr []int, candidates []int, target int, result *[][]int) {
+	// fmt.Println(arr)
 	total := sumOfArr(arr)
 	if total == target {
 		*result = append(*result, arr)
@@ -59,7 +48,19 @@ func recursiveAppend(arr []int, candidates []int, target int, result *[][]int) {
 		if target-curr < 0 {
 			break
 		}
-		recursiveAppend(cloneAndAppend(arr, curr), candidates[i+1:], target, result)
+		// eg: 1 2 2 2 5
+		// 1 - first loop
+		// 1 2 - second loop
+		// 1 2 2 - third loop
+		// ...
+		// 1 2 - second loop  * skip this with nums[i] == nums[i-1]
+		// 1 2 - second loop  * skip this with nums[i] == nums[i-1]
+		// 2 - first loop
+		// ...
+		if i > 0 && candidates[i] == candidates[i-1] {
+			continue
+		}
+		backtrack(cloneAndAppend(arr, curr), candidates[i+1:], target, result)
 	}
 }
 
