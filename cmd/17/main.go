@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	digits := []string{"23", "", "2"}
+	digits := []string{"232", "", "2"}
 	for _, digit := range digits {
 		fmt.Println(digit)
 		fmt.Println(letterCombinations(digit))
@@ -37,7 +37,7 @@ func letterCombinations(digits string) []string {
 		} else {
 			letters := keyboard[rune(digits[0])]
 			for _, letter := range letters {
-				// we could the code in the comment to
+				// we could use the code in the comment to
 				// have a better understanding
 				// subset = append(subset, letter)
 				// backtracking(digits[1:], subset)
