@@ -33,7 +33,7 @@ func jump(nums []int) int {
 		return i - index + nums[i]
 	}
 
-	for index+nums[index]+1 < len(nums) {
+	for index+nums[index] < len(nums)-1 {
 		maxLength := min(len(nums), index+nums[index]+1)
 		jumpIndex := index + 1
 		for i := index + 1; i < maxLength; i++ {
