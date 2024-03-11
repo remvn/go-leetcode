@@ -28,8 +28,8 @@ type TestCase struct {
 func customSortString(order string, s string) string {
 	orderMap := map[rune]int{}
 	orderRunes := []rune(order)
-	for i := 0; i < len(orderRunes); i++ {
-		orderMap[orderRunes[i]] = i
+	for i, char := range orderRunes {
+		orderMap[char] = i
 	}
 
 	match := []int{}
