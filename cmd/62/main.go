@@ -30,10 +30,15 @@ func uniquePaths(m int, n int) int {
 	for i := 0; i < m; i++ {
 		for j := 0; j < n; j++ {
 			sum := 0
-			if i == 0 || j == 0 {
+			if i == 0 && j == 0 {
 				sum = 1
 			} else {
-				sum = matrix[i-1][j] + matrix[i][j-1]
+				if i-1 >= 0 {
+					sum += matrix[i-1][j]
+				}
+				if j-1 >= 0 {
+					sum += matrix[i][j-1]
+				}
 			}
 			matrix[i][j] = sum
 		}
