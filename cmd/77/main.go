@@ -25,7 +25,7 @@ func combine(n int, k int) [][]int {
 }
 
 func backtracking(arr []int, index int, k int, n int, result *[][]int) {
-	// fmt.Println(arr)
+	fmt.Println(arr)
 	if len(arr) == k {
 		*result = append(*result, arr)
 		return
