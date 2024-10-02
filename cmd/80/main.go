@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 	arr := []int{0, 0, 1, 1, 1, 1, 2, 3, 3}
 	length := removeDuplicates(arr)
-	fmt.Println(length, arr)
+	fmt.Println(arr[:length])
 }
 
 // 1 1 1 2 2 3
