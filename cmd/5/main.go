@@ -34,6 +34,8 @@ func longestPalindrome(s string) string {
 	longest := string(s[0])
 	repeatMap := make(map[byte][]int)
 
+	// palindromes must have the same first and last letter
+	// so we can create a map to optimize runtime
 	for i := 0; i < len(s); i++ {
 		repeatMap[s[i]] = append(repeatMap[s[i]], i)
 	}
