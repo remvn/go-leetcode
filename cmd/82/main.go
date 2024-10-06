@@ -66,6 +66,10 @@ func printList(root *ListNode) {
 }
 
 func makeListFromArr(arr []int) *ListNode {
+	if len(arr) == 0 {
+		return nil
+	}
+
 	root := &ListNode{
 		Val: arr[0],
 	}
